@@ -1,0 +1,25 @@
+body {
+ display: flex;
+ flex-direction: column;
+ margin: 0;
+}
+
+body > div {
+ margin: 0 0 0 0;
+ border: 1px solid red;
+}
+
+#header {
+ background-color: LightGray;
+ position: fixed;
+}
+.presentation {
+ display: flex;
+ justify-content: space-between;
+}
+
+.content {
+ margin: 20px 10px;
+ padding: 10px;
+ height: 250px;
+}
