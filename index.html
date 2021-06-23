@@ -3,7 +3,9 @@
 <head>
     <title>representation</title>
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="./script.js" defer></script>
 </head>
+
 <body>
 <div id="header">header
     <button onclick="alert('clicked')">Click me</button>
@@ -21,7 +23,15 @@
         <li>html</li>
     </ul>
 </div>
-<div class="content langues">langue</div>
+<div class="content langues" >Veuillez saisir les 3 variables:
+    <input type="number" id="a"/>
+    <input type="number" id="b"/>
+    <input type="number" id="c"/>
+    <button onclick="submit();">Soumettre</button>
+</div>
+
+
+
 <div class="bottom">copyright</div>
 </body>
 </html>
