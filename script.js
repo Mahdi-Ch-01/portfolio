@@ -1,23 +1,38 @@
 function printWeekDays(){
     var semaine = [ 'lun', 'mra', 'mer', 'jeu', 'ven', 'sam', 'ddi' ];
-    semaine.pop();
-    document.open();
+
+
+    var container = document.getElementById("techno");
+    var br = document.createElement("br");
+    console.log(br)
+    console.log(typeof br)
     for (var i=0; i<semaine.length; i++) {
-        document.write(semaine[i]+" ");
-    }
-    document.write("<br/>");
+        container.appendChild(br.cloneNode(true));
+        container.appendChild(document.createTextNode(semaine[i]));
+    } 
+    
+    // var content1 = document.createTextNode(semaine[0]);
+    // var content2 = document.createTextNode(semaine[1]);
+    // container.appendChild(content1);
+    // container.appendChild(br);
+    // container.appendChild(content2);
 
-    semaine.push("dim");
-    semaine[1]="mar";
-    document.write(semaine.length);
-    document.write("<br/>");
-    document.write(semaine[2]);
-    document.close();
 
+    // semaine.pop();
+    // document.open();
+    // for (var i=0; i<semaine.length; i++) {
+    //     document.write(semaine[i]+" ");
+    // }
+    // document.write("<br/>");
+    // semaine.push("dim");
+    // semaine[1]="mar";
+    // document.write(semaine.length);
+    // document.write("<br/>");
+    // document.write(semaine[2]);
+    // document.close();
 
 }
 printWeekDays();
-
 
 
 function submit(){
