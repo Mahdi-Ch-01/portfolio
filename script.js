@@ -32,7 +32,7 @@ function printWeekDays(){
     // document.close();
 
 }
-printWeekDays();
+// printWeekDays();
 
 
 function submit(){
@@ -50,3 +50,46 @@ function submit(){
     }
     console.log (`reponse= ${d}`);
 }
+
+var cv = {
+    "prenom": "mahdi",
+    "nom": "Chaaouni",
+    "age": 21,
+    "languages": ["arabe", "français"],
+    "technologies": {
+      "javascript": "debutant",
+      "c++": "moyen"
+    },
+    "taille": 175,
+    "educationLevel": "2eme IG",
+  };
+function getCV() {
+    var technoKeys = ["prenom", "nom", "age"];
+    var container = document.getElementById("techno");
+
+    console.log(cv.technologies.javascript)
+    var br = document.createElement("br");
+    // b.style.color = "blue";
+    // var cleprenom = document.createTextNode("prenom: ");
+    
+
+    for(var i=0;i<technoKeys.length;i++) {
+        container.appendChild(br.cloneNode(true));
+        var b = document.createElement("b");
+        var span = document.createElement("span");
+    
+        var prettyKey = technoKeys[i] + ": "
+        b.appendChild(document.createTextNode(prettyKey));
+        container.appendChild(b);
+        
+        span.appendChild(document.createTextNode(cv[technoKeys[i]]));
+        container.appendChild(span);
+        
+    }
+    // b.appendChild(cleprenom);
+    // span.appendChild(prenom);
+    // 
+    // container.appendChild(b);
+    // container.appendChild(span);
+}
+getCV();
