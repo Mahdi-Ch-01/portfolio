@@ -104,10 +104,6 @@ function getRemoteData() {
 
         getCV(JSON.parse(this.responseText)) 
         
-        
-        
-        
-        
       }
     };
     xhttp.open("GET", "https://jsonplaceholder.typicode.com/users/1", true);
