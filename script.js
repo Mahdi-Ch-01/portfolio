@@ -63,14 +63,15 @@ var cv = {
     "taille": 175,
     "educationLevel": "2eme IG",
   };
-function getCV() {
-    var technoKeys = ["prenom", "nom", "age"];
-    var container = document.getElementById("techno");
 
-    console.log(cv.technologies.javascript)
+
+  var container = document.getElementById("techno");
+
+function getCV(data) {
+    var technoKeys = ["name", "username", "email"];
+
+    console.log(data)
     var br = document.createElement("br");
-    // b.style.color = "blue";
-    // var cleprenom = document.createTextNode("prenom: ");
     
 
     for(var i=0;i<technoKeys.length;i++) {
@@ -82,7 +83,7 @@ function getCV() {
         b.appendChild(document.createTextNode(prettyKey));
         container.appendChild(b);
         
-        span.appendChild(document.createTextNode(cv[technoKeys[i]]));
+        span.appendChild(document.createTextNode(data[technoKeys[i]]));
         container.appendChild(span);
         
     }
@@ -92,4 +93,25 @@ function getCV() {
     // container.appendChild(b);
     // container.appendChild(span);
 }
-getCV();
+// getCV();
+
+function getRemoteData() {
+    // https://jsonplaceholder.typicode.com/users/1
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        // container.innerHTML = this.responseText;
+
+        getCV(JSON.parse(this.responseText)) 
+        
+        
+        
+        
+        
+      }
+    };
+    xhttp.open("GET", "https://jsonplaceholder.typicode.com/users/1", true);
+    xhttp.send();
+    console.log(this.responseText)
+}
+getRemoteData()
