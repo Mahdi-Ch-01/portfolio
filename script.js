@@ -51,42 +51,47 @@ function submit(){
     console.log (`reponse= ${d}`);
 }
 
-var cv = {
-    "prenom": "mahdi",
-    "nom": "Chaaouni",
-    "age": 21,
-    "languages": ["arabe", "français"],
-    "technologies": {
-      "javascript": "debutant",
-      "c++": "moyen"
-    },
-    "taille": 175,
-    "educationLevel": "2eme IG",
-  };
+// var cv = {
+//     "prenom": "mahdi",
+//     "nom": "Chaaouni",
+//     "age": 21,
+//     "languages": ["arabe", "français"],
+//     "technologies": {
+//       "javascript": "debutant",
+//       "c++": "moyen"
+//     },
+//     "taille": 175,
+//     "educationLevel": "2eme IG",
+// };
 
 
-  var container = document.getElementById("techno");
+var container = document.getElementById("techno");
 
 function getCV(data) {
     var technoKeys = ["name", "username", "email"];
-
     console.log(data)
-    var br = document.createElement("br");
-    
 
-    for(var i=0;i<technoKeys.length;i++) {
-        container.appendChild(br.cloneNode(true));
-        var b = document.createElement("b");
-        var span = document.createElement("span");
-    
-        var prettyKey = technoKeys[i] + ": "
-        b.appendChild(document.createTextNode(prettyKey));
-        container.appendChild(b);
-        
-        span.appendChild(document.createTextNode(data[technoKeys[i]]));
-        container.appendChild(span);
-        
+    var br = document.createElement("br");
+    for(var j=0;j<data.length;j++) {
+
+        for(var i=0;i<technoKeys.length;i++) {
+
+            container.appendChild(br.cloneNode(true));
+            var b = document.createElement("b");
+            var span = document.createElement("span");
+            var prettyKey = technoKeys[i] + ": "
+            //console.log(technoKeys[i]);
+            b.appendChild(document.createTextNode(prettyKey));
+            container.appendChild(b);
+            console.log(j);
+            //span.appendChild(document.createTextNode(data[technoKeys[i]]));
+            console.log(technoKeys[i]);
+            span.appendChild(document.createTextNode(data[j.technoKeys[i]]));
+            container.appendChild(span);
+            
+        }
     }
+
     // b.appendChild(cleprenom);
     // span.appendChild(prenom);
     // 
@@ -101,12 +106,10 @@ function getRemoteData() {
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         // container.innerHTML = this.responseText;
-
         getCV(JSON.parse(this.responseText)) 
-        
       }
     };
-    xhttp.open("GET", "https://jsonplaceholder.typicode.com/users/1", true);
+    xhttp.open("GET", "https://jsonplaceholder.typicode.com/users/", true);
     xhttp.send();
     console.log(this.responseText)
 }
