@@ -83,10 +83,8 @@ function getCV(data) {
             //console.log(technoKeys[i]);
             b.appendChild(document.createTextNode(prettyKey));
             container.appendChild(b);
-            console.log(j);
             //span.appendChild(document.createTextNode(data[technoKeys[i]]));
-            console.log(technoKeys[i]);
-            span.appendChild(document.createTextNode(data[j.technoKeys[i]]));
+            span.appendChild(document.createTextNode((data[j])[technoKeys[i]]));
             container.appendChild(span);
             
         }
