@@ -63,16 +63,28 @@ function submit(){
 //     "taille": 175,
 //     "educationLevel": "2eme IG",
 // };
-
-
 var container = document.getElementById("techno");
 
-function getCV(data) {
-    var technoKeys = ["name", "username", "email"];
+
+function onSelectChange () {
+    container.innerHTML = '';
+    var selectedKey = document.getElementById("select").value;
+    getRemoteData(selectedKey)
+}
+
+
+function getCV(data, selectedKey) {
+    var technoKeys = Object.keys(data[0]);
+    loadSelectOptions(technoKeys);
     console.log(data)
 
+    var sortedData = data.sort(function(a, b){
+        return a[selectedKey] > b[selectedKey] ? 1 : -1;
+    });
+
+    console.log(sortedData)
     var br = document.createElement("br");
-    for(var j=0;j<data.length;j++) {
+    for(var j=0;j<sortedData.length;j++) {
 
         for(var i=0;i<technoKeys.length;i++) {
 
@@ -84,10 +96,12 @@ function getCV(data) {
             b.appendChild(document.createTextNode(prettyKey));
             container.appendChild(b);
             //span.appendChild(document.createTextNode(data[technoKeys[i]]));
-            span.appendChild(document.createTextNode((data[j])[technoKeys[i]]));
+            var test = document.createTextNode(sortedData[j][technoKeys[i]]) ;
+            span.appendChild(test);
             container.appendChild(span);
             
         }
+        container.appendChild(br.cloneNode(true));
     }
 
     // b.appendChild(cleprenom);
@@ -98,17 +112,30 @@ function getCV(data) {
 }
 // getCV();
 
-function getRemoteData() {
+function getRemoteData(selectedKey) {
     // https://jsonplaceholder.typicode.com/users/1
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         // container.innerHTML = this.responseText;
-        getCV(JSON.parse(this.responseText)) 
+        getCV(JSON.parse(this.responseText), selectedKey) 
       }
     };
-    xhttp.open("GET", "https://jsonplaceholder.typicode.com/users/", true);
+    xhttp.open("GET", "https://jsonplaceholder.typicode.com/users", true);
     xhttp.send();
     console.log(this.responseText)
 }
 getRemoteData()
+
+function loadSelectOptions(keys) {
+    for (var f=0;f< keys.length;f++){
+        var x = document.getElementById("select");
+        var option = document.createElement("option");
+        option.setAttribute('value', keys[f]);
+
+        
+        console.log(keys[f]);
+        option.appendChild(document.createTextNode(keys[f]));
+        x.appendChild(option);
+    }
+}
